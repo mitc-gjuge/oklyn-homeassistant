@@ -14,7 +14,7 @@ Elle expose, pour chaque appareil :
 | Salinité | `sensor` | g/L |
 | Filtration active | `binary_sensor` | état réel de la pompe |
 | Filtration | `select` | `off` / `on` / `auto` |
-| Contact auxiliaire | `switch` | marche / arrêt |
+| Contact auxiliaire 1 & 2 | `switch` | marche / arrêt (2 contacts) |
 
 ## Installation
 

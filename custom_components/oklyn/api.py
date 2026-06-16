@@ -35,6 +35,10 @@ AUTH_HEADER = "X-Api-Token"
 #   ph = pH, orp = potentiel RedOx (mV), salt = salinité (g/L)
 MEASURES: tuple[str, ...] = ("water", "air", "ph", "orp", "salt")
 
+# Contacts auxiliaires pilotables (endpoints confirmés en live). L'appareil en
+# expose deux : `aux` (le premier, sans suffixe) et `aux2`.
+AUX_CONTACTS: tuple[str, ...] = ("aux", "aux2")
+
 
 class OklynError(Exception):
     """Erreur de communication avec l'API Oklyn."""
@@ -141,33 +145,40 @@ class OklynClient:
         """Modifie le mode de filtration (off / on / auto)."""
         await self._request("PUT", "pump", json={"pump": mode})
 
-    async def async_set_aux(self, state: str) -> None:
-        """Modifie l'état du contact auxiliaire (on / off)."""
-        await self._request("PUT", "aux", json={"aux": state})
+    async def async_set_aux(self, contact: str, state: str) -> None:
+        """Modifie l'état d'un contact auxiliaire (`aux` ou `aux2`) -> on / off.
+
+        La forme du corps PUT (`{"aux": state}`) est reprise de la collection
+        Postman pour `aux` et supposée identique pour `aux2` (l'endpoint
+        différencie le contact). À ajuster ici si un PUT sur `aux2` échoue.
+        """
+        await self._request("PUT", contact, json={"aux": state})
 
     async def async_get_all(self) -> dict[str, Any]:
         """Récupère toutes les données en une fois (appels concurrents)."""
-        measure_paths = [f"data/{m}" for m in MEASURES]
+        paths = [f"data/{m}" for m in MEASURES]
+        paths.append("pump")
+        paths.extend(AUX_CONTACTS)
         responses = await asyncio.gather(
-            *[self._request("GET", p) for p in measure_paths],
-            self._request("GET", "pump"),
-            self._request("GET", "aux"),
+            *[self._request("GET", p) for p in paths]
         )
+        by_path = dict(zip(paths, responses))
 
         data: dict[str, Any] = {}
-        for measure, payload in zip(MEASURES, responses):
-            data[measure] = _parse_measure(payload)
+        for measure in MEASURES:
+            data[measure] = _parse_measure(by_path[f"data/{measure}"])
 
-        pump_payload = responses[len(MEASURES)]
-        aux_payload = responses[len(MEASURES) + 1]
+        pump_payload = by_path["pump"]
         data["pump"] = {
             "mode": _extract_scalar(pump_payload, "pump"),
             "running": _is_on(_field(pump_payload, "status")),
             "changed_at": _field(pump_payload, "changed_at"),
         }
-        data["aux"] = {
-            "state": _extract_scalar(aux_payload, "aux"),
-            "status": _field(aux_payload, "status"),
-            "changed_at": _field(aux_payload, "changed_at"),
-        }
+        for contact in AUX_CONTACTS:
+            aux_payload = by_path[contact]
+            data[contact] = {
+                "state": _extract_scalar(aux_payload, "aux"),
+                "status": _field(aux_payload, "status"),
+                "changed_at": _field(aux_payload, "changed_at"),
+            }
         return data

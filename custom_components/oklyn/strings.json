@@ -30,7 +30,8 @@
       "salt": { "name": "Salinity" }
     },
     "switch": {
-      "aux": { "name": "Auxiliary contact" }
+      "aux": { "name": "Auxiliary contact 1" },
+      "aux2": { "name": "Auxiliary contact 2" }
     },
     "select": {
       "pump": { "name": "Filtration" }
