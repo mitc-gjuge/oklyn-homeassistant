@@ -3,9 +3,9 @@
   "name": "Oklyn",
   "version": "0.1.0",
   "config_flow": true,
-  "documentation": "https://github.com/votre-compte/oklyn-homeassistant",
-  "issue_tracker": "https://github.com/votre-compte/oklyn-homeassistant/issues",
-  "codeowners": ["@votre-compte"],
+  "documentation": "https://github.com/mitc-gjuge/oklyn-homeassistant",
+  "issue_tracker": "https://github.com/mitc-gjuge/oklyn-homeassistant/issues",
+  "codeowners": ["@mitc-gjuge"],
   "iot_class": "cloud_polling",
   "integration_type": "device",
   "requirements": []
