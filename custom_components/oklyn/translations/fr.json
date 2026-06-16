@@ -1,0 +1,38 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Oklyn",
+        "description": "Renseignez l'identifiant de votre appareil et votre clé API Oklyn.",
+        "data": {
+          "device_id": "Identifiant de l'appareil",
+          "api_key": "Clé API"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Connexion impossible",
+      "invalid_auth": "Clé API invalide"
+    },
+    "abort": {
+      "already_configured": "Cet appareil est déjà configuré"
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "pump_running": { "name": "Filtration active" }
+    },
+    "sensor": {
+      "water": { "name": "Température de l'eau" },
+      "air": { "name": "Température de l'air" },
+      "ph": { "name": "pH" },
+      "orp": { "name": "RedOx (ORP)" }
+    },
+    "switch": {
+      "aux": { "name": "Contact auxiliaire" }
+    },
+    "select": {
+      "pump": { "name": "Filtration" }
+    }
+  }
+}
