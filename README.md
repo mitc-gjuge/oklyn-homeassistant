@@ -64,9 +64,10 @@ logger:
 - Polling toutes les **120 s** par défaut (un seul `DataUpdateCoordinator`
   partagé, appels concurrents via `asyncio.gather`).
 - État stocké via `entry.runtime_data` (pratique moderne, pas de `hass.data`).
-- Le client HTTP est embarqué dans `api.py`. Pour une publication propre dans
-  HACS par défaut (et a fortiori pour le cœur de HA), la bonne pratique est de
-  l'externaliser dans un paquet PyPI listé dans `manifest.json` → `requirements`.
+- Le client HTTP est embarqué dans `api.py` — choix volontaire et adapté à une
+  intégration HACS. Une éventuelle soumission au **cœur de Home Assistant**
+  imposerait de l'externaliser dans un paquet PyPI listé dans
+  `manifest.json` → `requirements` ; ce n'est pas requis pour HACS.
 
 ## Développement
 
