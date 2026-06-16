@@ -48,26 +48,10 @@ Renseignez :
 > la clé d'exemple présente dans la collection Postman publique : c'est un
 > placeholder, pas une clé valide.
 
-## Forme des réponses de l'API (confirmée en live)
-
-Toutes les formes de réponse ont été vérifiées directement contre l'API ; le
-décodage cible donc les champs réels, avec `_extract_scalar()`
-(`custom_components/oklyn/api.py`) conservé comme filet de sécurité.
-
-```jsonc
-GET data/<mesure>  → {"recorded": "2026-…Z", "value": 6.88, "status": "normal", "value_raw": 6.88}
-GET pump           → {"pump": "auto", "status": "off", "changed_at": "2026-…Z"}  // pump = mode, status = pompe réellement en marche
-GET aux  /  aux2   → {"aux": "off", "status": "off", "changed_at": null}
-PUT pump           ← {"pump": "off|on|auto"}     // les 3 modes confirmés
-PUT aux  /  aux2   ← {"aux": "on|off"}           // clé "aux" pour les deux contacts
-```
-
-À noter : le champ `status` de la pompe (état réel) a une **latence** d'environ
-15 s à 1 min après un changement de mode, contrairement aux contacts auxiliaires
-qui répondent immédiatement.
+## Dépannage
 
 En cas de souci (capteur `unknown`, état incohérent), activez les logs de debug
-et inspectez le JSON renvoyé :
+et inspectez le JSON renvoyé par l'API :
 
 ```yaml
 logger:
