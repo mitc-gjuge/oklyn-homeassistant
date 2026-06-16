@@ -13,8 +13,8 @@ DEFAULT_SCAN_INTERVAL = 120
 
 MANUFACTURER = "Oklyn"
 
-# Modes de filtration possibles (PUT pump). "auto" est confirmé par la
-# collection Postman ; "on"/"off" sont supposés -> à ajuster si besoin.
+# Modes de filtration possibles (PUT pump). Les trois sont confirmés en live
+# (2026-06-16) : un PUT {"pump": <mode>} renvoie 200 et le GET reflète le mode.
 PUMP_OPTIONS = ["off", "on", "auto"]
 
 AUX_ON = "on"
