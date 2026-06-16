@@ -8,3 +8,7 @@ __pycache__/
 # Environnement de test
 .venv/
 .pytest_cache/
+
+# Assets de marque (à soumettre séparément à home-assistant/brands)
+/brand/
+/*.png
