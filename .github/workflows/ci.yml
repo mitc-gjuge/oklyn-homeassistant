@@ -47,10 +47,10 @@ jobs:
     name: Validate (HACS)
     runs-on: ubuntu-latest
     # La validation HACS s'appuie sur l'API GitHub (topics, contenu du dépôt) et
-    # n'est pleinement exploitable que sur un dépôt PUBLIC. Tant que le dépôt est
-    # privé, certains sous-checks renvoient « None » : le job reste informatif
-    # mais ne fait pas échouer la CI. À repasser bloquant en passant en public.
-    continue-on-error: true
+    # n'aboutit que sur un dépôt PUBLIC (sur un dépôt privé certains sous-checks
+    # renvoient « None »). On saute donc le job tant que le dépôt est privé : il
+    # s'activera automatiquement, en tant que vrai check, au passage en public.
+    if: ${{ github.event.repository.private == false }}
     steps:
       - uses: actions/checkout@v4
       - uses: hacs/action@main
