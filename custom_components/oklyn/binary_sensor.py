@@ -2,6 +2,10 @@
 
 Le `select` expose le *mode* choisi (off/on/auto) ; ce capteur expose l'état
 *réel* de la pompe, renvoyé par l'API dans le champ `status` de `GET pump`.
+
+Confirmé en live (2026-06-16) : après un passage en mode `on`, `status` bascule
+à `"on"` sous ~15 s. Le couple (mode=`auto`, status=`on`) est valide : la pompe
+filtre effectivement alors qu'elle est en mode automatique.
 """
 
 from __future__ import annotations
