@@ -30,6 +30,9 @@ _LOGGER = logging.getLogger(__name__)
 API_BASE = "https://api.oklyn.fr/public/v1"
 AUTH_HEADER = "X-Api-Token"
 
+# Délai max (secondes) par requête, pour ne jamais bloquer le coordinator.
+REQUEST_TIMEOUT_S = 30
+
 # Mesures exposées par .../data/<mesure> (liste complète confirmée en live) :
 #   water = température de l'eau, air = température de l'air,
 #   ph = pH, orp = potentiel RedOx (mV), salt = salinité (g/L)
@@ -124,7 +127,11 @@ class OklynClient:
         url = f"{self._device_url}/{path}"
         try:
             async with self._session.request(
-                method, url, headers=self._headers, json=json
+                method,
+                url,
+                headers=self._headers,
+                json=json,
+                timeout=aiohttp.ClientTimeout(total=REQUEST_TIMEOUT_S),
             ) as resp:
                 if resp.status in (401, 403):
                     raise OklynAuthError(f"Authentification refusée ({resp.status})")
@@ -132,7 +139,7 @@ class OklynClient:
                 if resp.content_type == "application/json":
                     return await resp.json()
                 return await resp.text()
-        except aiohttp.ClientError as err:
+        except (aiohttp.ClientError, TimeoutError) as err:
             raise OklynError(f"Erreur réseau sur {url} : {err}") from err
 
     async def async_validate(self) -> None:

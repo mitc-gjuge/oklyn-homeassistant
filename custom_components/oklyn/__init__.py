@@ -28,9 +28,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: OklynConfigEntry) -> boo
     )
 
     scan_interval = entry.options.get(CONF_SCAN_INTERVAL_S, DEFAULT_SCAN_INTERVAL)
-    coordinator = OklynDataUpdateCoordinator(
-        hass, client, scan_interval, entry.data[CONF_DEVICE_ID]
-    )
+    coordinator = OklynDataUpdateCoordinator(hass, client, scan_interval, entry)
 
     # Premier refresh : échoue proprement si l'API ne répond pas
     await coordinator.async_config_entry_first_refresh()

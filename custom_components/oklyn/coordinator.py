@@ -12,7 +12,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .api import OklynAuthError, OklynClient, OklynError
-from .const import DOMAIN
+from .const import CONF_DEVICE_ID, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -28,13 +28,15 @@ class OklynDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         hass: HomeAssistant,
         client: OklynClient,
         scan_interval: int,
-        device_id: str,
+        config_entry: OklynConfigEntry,
     ) -> None:
+        device_id = config_entry.data[CONF_DEVICE_ID]
         super().__init__(
             hass,
             _LOGGER,
             name=f"{DOMAIN} ({device_id})",
             update_interval=timedelta(seconds=scan_interval),
+            config_entry=config_entry,
         )
         self.client = client
         self.device_id = device_id

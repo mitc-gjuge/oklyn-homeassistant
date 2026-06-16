@@ -8,6 +8,13 @@
           "device_id": "Identifiant de l'appareil",
           "api_key": "Clé API"
         }
+      },
+      "reauth_confirm": {
+        "title": "Ré-authentification Oklyn",
+        "description": "Votre clé API n'est plus valide. Saisissez-en une nouvelle.",
+        "data": {
+          "api_key": "Clé API"
+        }
       }
     },
     "error": {
@@ -15,7 +22,8 @@
       "invalid_auth": "Clé API invalide"
     },
     "abort": {
-      "already_configured": "Cet appareil est déjà configuré"
+      "already_configured": "Cet appareil est déjà configuré",
+      "reauth_successful": "Ré-authentification réussie"
     }
   },
   "options": {
@@ -45,7 +53,14 @@
       "aux2": { "name": "Contact auxiliaire 2" }
     },
     "select": {
-      "pump": { "name": "Filtration" }
+      "pump": {
+        "name": "Filtration",
+        "state": {
+          "off": "Arrêt",
+          "on": "Marche",
+          "auto": "Automatique"
+        }
+      }
     }
   }
 }

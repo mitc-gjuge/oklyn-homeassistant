@@ -8,6 +8,8 @@ sont celles confirmées en live.
 
 from __future__ import annotations
 
+import asyncio
+
 import pytest
 
 # --------------------------------------------------------------------------- #
@@ -133,3 +135,32 @@ class TestParseMeasure:
     def test_always_returns_three_keys(self, api):
         result = api._parse_measure({"value": 1})
         assert set(result) == {"value", "status", "recorded"}
+
+
+# --------------------------------------------------------------------------- #
+# OklynClient._request — gestion des erreurs
+# --------------------------------------------------------------------------- #
+
+
+class _TimeoutCtx:
+    """Contexte asynchrone dont l'entrée lève un TimeoutError (comme aiohttp)."""
+
+    async def __aenter__(self):
+        raise TimeoutError
+
+    async def __aexit__(self, *exc):
+        return False
+
+
+class _TimeoutSession:
+    def request(self, *args, **kwargs):
+        return _TimeoutCtx()
+
+
+class TestRequestErrors:
+    """Un timeout réseau doit être traduit en `OklynError` (et non s'échapper)."""
+
+    def test_timeout_becomes_oklyn_error(self, api):
+        client = api.OklynClient("key", "device", _TimeoutSession())
+        with pytest.raises(api.OklynError):
+            asyncio.run(client._request("GET", "pump"))

@@ -8,6 +8,13 @@
           "device_id": "Device ID",
           "api_key": "API key"
         }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate Oklyn",
+        "description": "Your API key is no longer valid. Enter a new one.",
+        "data": {
+          "api_key": "API key"
+        }
       }
     },
     "error": {
@@ -15,7 +22,8 @@
       "invalid_auth": "Invalid API key"
     },
     "abort": {
-      "already_configured": "This device is already configured"
+      "already_configured": "This device is already configured",
+      "reauth_successful": "Re-authentication successful"
     }
   },
   "options": {
@@ -45,7 +53,14 @@
       "aux2": { "name": "Auxiliary contact 2" }
     },
     "select": {
-      "pump": { "name": "Filtration" }
+      "pump": {
+        "name": "Filtration",
+        "state": {
+          "off": "Off",
+          "on": "On",
+          "auto": "Auto"
+        }
+      }
     }
   }
 }

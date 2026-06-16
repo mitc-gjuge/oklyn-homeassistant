@@ -24,6 +24,7 @@ if "aiohttp" not in sys.modules:
         _stub = types.ModuleType("aiohttp")
         _stub.ClientSession = object
         _stub.ClientError = Exception
+        _stub.ClientTimeout = lambda **kwargs: None
         sys.modules["aiohttp"] = _stub
 
 _API_PATH = (
