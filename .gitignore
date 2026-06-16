@@ -4,3 +4,7 @@ __pycache__/
 
 # Artefacts harness Claude Code
 .claude/
+
+# Environnement de test
+.venv/
+.pytest_cache/
