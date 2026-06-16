@@ -45,6 +45,13 @@ SENSORS: tuple[SensorEntityDescription, ...] = (
         state_class=SensorStateClass.MEASUREMENT,
         icon="mdi:flash",
     ),
+    SensorEntityDescription(
+        key="salt",
+        translation_key="salt",
+        native_unit_of_measurement="g/L",
+        state_class=SensorStateClass.MEASUREMENT,
+        icon="mdi:shaker-outline",
+    ),
 )
 
 

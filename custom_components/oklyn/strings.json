@@ -26,7 +26,8 @@
       "water": { "name": "Water temperature" },
       "air": { "name": "Air temperature" },
       "ph": { "name": "pH" },
-      "orp": { "name": "ORP (RedOx)" }
+      "orp": { "name": "ORP (RedOx)" },
+      "salt": { "name": "Salinity" }
     },
     "switch": {
       "aux": { "name": "Auxiliary contact" }

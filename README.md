@@ -11,6 +11,8 @@ Elle expose, pour chaque appareil :
 | Température de l'air | `sensor` | °C |
 | pH | `sensor` | device class `ph` |
 | RedOx (ORP) | `sensor` | mV |
+| Salinité | `sensor` | g/L |
+| Filtration active | `binary_sensor` | état réel de la pompe |
 | Filtration | `select` | `off` / `on` / `auto` |
 | Contact auxiliaire | `switch` | marche / arrêt |
 

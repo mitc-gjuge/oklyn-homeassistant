@@ -30,10 +30,10 @@ _LOGGER = logging.getLogger(__name__)
 API_BASE = "https://api.oklyn.fr/public/v1"
 AUTH_HEADER = "X-Api-Token"
 
-# Mesures exposées par .../data/<mesure>
+# Mesures exposées par .../data/<mesure> (liste complète confirmée en live) :
 #   water = température de l'eau, air = température de l'air,
-#   ph = pH, orp = potentiel RedOx (mV)
-MEASURES: tuple[str, ...] = ("water", "air", "ph", "orp")
+#   ph = pH, orp = potentiel RedOx (mV), salt = salinité (g/L)
+MEASURES: tuple[str, ...] = ("water", "air", "ph", "orp", "salt")
 
 
 class OklynError(Exception):
