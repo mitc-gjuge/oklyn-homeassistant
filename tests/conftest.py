@@ -27,10 +27,7 @@ if "aiohttp" not in sys.modules:
         sys.modules["aiohttp"] = _stub
 
 _API_PATH = (
-    Path(__file__).resolve().parent.parent
-    / "custom_components"
-    / "oklyn"
-    / "api.py"
+    Path(__file__).resolve().parent.parent / "custom_components" / "oklyn" / "api.py"
 )
 
 

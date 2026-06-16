@@ -120,9 +120,7 @@ class OklynClient:
     def _device_url(self) -> str:
         return f"{API_BASE}/device/{self._device_id}"
 
-    async def _request(
-        self, method: str, path: str, json: dict | None = None
-    ) -> Any:
+    async def _request(self, method: str, path: str, json: dict | None = None) -> Any:
         url = f"{self._device_url}/{path}"
         try:
             async with self._session.request(
@@ -159,10 +157,8 @@ class OklynClient:
         paths = [f"data/{m}" for m in MEASURES]
         paths.append("pump")
         paths.extend(AUX_CONTACTS)
-        responses = await asyncio.gather(
-            *[self._request("GET", p) for p in paths]
-        )
-        by_path = dict(zip(paths, responses))
+        responses = await asyncio.gather(*[self._request("GET", p) for p in paths])
+        by_path = dict(zip(paths, responses, strict=True))
 
         data: dict[str, Any] = {}
         for measure in MEASURES:

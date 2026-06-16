@@ -1,12 +1,12 @@
 {
   "domain": "oklyn",
   "name": "Oklyn",
-  "version": "0.1.0",
+  "codeowners": ["@mitc-gjuge"],
   "config_flow": true,
   "documentation": "https://github.com/mitc-gjuge/oklyn-homeassistant",
-  "issue_tracker": "https://github.com/mitc-gjuge/oklyn-homeassistant/issues",
-  "codeowners": ["@mitc-gjuge"],
-  "iot_class": "cloud_polling",
   "integration_type": "device",
-  "requirements": []
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/mitc-gjuge/oklyn-homeassistant/issues",
+  "requirements": [],
+  "version": "0.1.0"
 }

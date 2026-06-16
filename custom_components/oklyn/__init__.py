@@ -41,9 +41,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: OklynConfigEntry) -> boo
     return True
 
 
-async def _async_update_listener(
-    hass: HomeAssistant, entry: OklynConfigEntry
-) -> None:
+async def _async_update_listener(hass: HomeAssistant, entry: OklynConfigEntry) -> None:
     """Recharge l'intégration quand les options changent."""
     await hass.config_entries.async_reload(entry.entry_id)
 
