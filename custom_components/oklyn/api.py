@@ -148,9 +148,9 @@ class OklynClient:
     async def async_set_aux(self, contact: str, state: str) -> None:
         """Modifie l'état d'un contact auxiliaire (`aux` ou `aux2`) -> on / off.
 
-        La forme du corps PUT (`{"aux": state}`) est reprise de la collection
-        Postman pour `aux` et supposée identique pour `aux2` (l'endpoint
-        différencie le contact). À ajuster ici si un PUT sur `aux2` échoue.
+        Le corps PUT `{"aux": state}` est confirmé en live (2026-06-16) pour les
+        deux contacts : c'est l'endpoint (`aux` vs `aux2`) qui différencie le
+        contact, la clé du corps reste `aux` dans les deux cas.
         """
         await self._request("PUT", contact, json={"aux": state})
 
