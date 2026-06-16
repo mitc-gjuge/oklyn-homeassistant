@@ -18,6 +18,17 @@
       "already_configured": "Cet appareil est déjà configuré"
     }
   },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options Oklyn",
+        "description": "Intervalle d'interrogation de l'API Oklyn.",
+        "data": {
+          "scan_interval": "Intervalle de rafraîchissement (secondes)"
+        }
+      }
+    }
+  },
   "entity": {
     "binary_sensor": {
       "pump_running": { "name": "Filtration active" }

@@ -18,6 +18,17 @@
       "already_configured": "This device is already configured"
     }
   },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Oklyn options",
+        "description": "Polling interval for the Oklyn API.",
+        "data": {
+          "scan_interval": "Update interval (seconds)"
+        }
+      }
+    }
+  },
   "entity": {
     "binary_sensor": {
       "pump_running": { "name": "Filtration running" }
