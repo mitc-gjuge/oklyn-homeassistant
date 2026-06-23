@@ -8,3 +8,6 @@ __pycache__/
 # Environnement de test
 .venv/
 .pytest_cache/
+
+# Logo source haute résolution (les assets livrés sont dans custom_components/oklyn/brand/)
+/*.png
