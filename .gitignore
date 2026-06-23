@@ -9,6 +9,5 @@ __pycache__/
 .venv/
 .pytest_cache/
 
-# Assets de marque (à soumettre séparément à home-assistant/brands)
-/brand/
+# Logo source haute résolution (les assets livrés sont dans custom_components/oklyn/brand/)
 /*.png
