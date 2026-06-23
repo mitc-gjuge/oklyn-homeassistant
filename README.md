@@ -1,9 +1,20 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="custom_components/oklyn/brand/dark_logo.png">
+    <img src="custom_components/oklyn/brand/logo.png" alt="Oklyn" width="200">
+  </picture>
+</p>
+
 # Oklyn pour Home Assistant
 
 [![CI](https://github.com/mitc-gjuge/oklyn-homeassistant/actions/workflows/ci.yml/badge.svg)](https://github.com/mitc-gjuge/oklyn-homeassistant/actions/workflows/ci.yml)
 
 Intégration **custom component** (non officielle) pour les appareils de pilotage
 de piscine **Oklyn**, via l'API publique `https://api.oklyn.fr/public/v1`.
+
+> **Développée avec le soutien d'Oklyn.** Ce projet est **indépendant** : il
+> n'est ni développé ni édité par Oklyn. Oklyn a néanmoins donné son **accord**
+> et apporte son **soutien** à son développement.
 
 Elle expose, pour chaque appareil :
 
@@ -87,4 +98,5 @@ lors du passage en public.
 
 ## Avertissement
 
-Projet indépendant, sans lien avec Oklyn. Fourni « tel quel », à vos risques.
+Projet indépendant, développé avec l'accord et le soutien d'Oklyn mais non
+édité officiellement par Oklyn. Fourni « tel quel », à vos risques.
