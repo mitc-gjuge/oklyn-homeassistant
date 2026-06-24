@@ -1,5 +1,6 @@
 {
   "name": "Oklyn (piscine)",
   "homeassistant": "2024.12.0",
+  "country": ["FR"],
   "render_readme": true
 }

@@ -47,15 +47,13 @@ jobs:
     name: Validate (HACS)
     runs-on: ubuntu-latest
     # La validation HACS s'appuie sur l'API GitHub (topics, contenu du dépôt) et
-    # n'aboutit que sur un dépôt PUBLIC (sur un dépôt privé certains sous-checks
-    # renvoient « None »). On saute donc le job tant que le dépôt est privé : il
-    # s'activera automatiquement, en tant que vrai check, au passage en public.
+    # n'aboutit que sur un dépôt PUBLIC. Le dépôt étant public, le job tourne en
+    # tant que vrai check (sans `ignore`), comme l'exige l'inclusion par défaut.
     if: ${{ github.event.repository.private == false }}
     steps:
       - uses: actions/checkout@v4
       - uses: hacs/action@main
         with:
+          # La marque est fournie via custom_components/oklyn/brand/ (icon.png),
+          # ce qui satisfait la vérification « brands » sans home-assistant/brands.
           category: integration
-          # L'icône/logo de marque vit dans le dépôt home-assistant/brands,
-          # absent ici : on ignore cette vérification.
-          ignore: brands
