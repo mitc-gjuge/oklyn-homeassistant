@@ -8,6 +8,7 @@
 # Oklyn pour Home Assistant
 
 [![CI](https://github.com/mitc-gjuge/oklyn-homeassistant/actions/workflows/ci.yml/badge.svg)](https://github.com/mitc-gjuge/oklyn-homeassistant/actions/workflows/ci.yml)
+[![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 
 Intégration **custom component** (non officielle) pour les appareils de pilotage
 de piscine **Oklyn**, via l'API publique `https://api.oklyn.fr/public/v1`.
