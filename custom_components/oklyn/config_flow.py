@@ -69,7 +69,11 @@ class OklynConfigFlow(ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema(
                 {
                     vol.Required(CONF_DEVICE_ID): str,
-                    vol.Required(CONF_API_KEY): str,
+                    vol.Required(CONF_API_KEY): selector.TextSelector(
+                        selector.TextSelectorConfig(
+                            type=selector.TextSelectorType.PASSWORD
+                        )
+                    ),
                 }
             ),
             errors=errors,
@@ -109,7 +113,15 @@ class OklynConfigFlow(ConfigFlow, domain=DOMAIN):
 
         return self.async_show_form(
             step_id="reauth_confirm",
-            data_schema=vol.Schema({vol.Required(CONF_API_KEY): str}),
+            data_schema=vol.Schema(
+                {
+                    vol.Required(CONF_API_KEY): selector.TextSelector(
+                        selector.TextSelectorConfig(
+                            type=selector.TextSelectorType.PASSWORD
+                        )
+                    )
+                }
+            ),
             errors=errors,
         )
 
